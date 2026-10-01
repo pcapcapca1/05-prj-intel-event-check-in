@@ -19,6 +19,6 @@ form.addEventListener("submit", function (event){
   console.log(name, teamName);
 
   //Increment count
-  count++
+  count++;
   console.log("Total check-ins: ", count);
 });
