@@ -10,7 +10,7 @@ const greeting = document.getElementById("greeting");
 let count = 0;
 const maxCount = 50;
 
-//Form submission handlinh
+//Form submission handling
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -65,7 +65,7 @@ form.addEventListener("submit", function (event) {
       winningCount = powerCount;
     }
 
-    greeting.textContent = `Celebration! ${winningTeam} is the winning team with ${winningCount} attendees!`;
+    greeting.textContent = `CONGRATULATIONS! ${winningTeam} is the winning team with ${winningCount} attendees!`;
   }
 
   console.log(message);
