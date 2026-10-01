@@ -5,6 +5,7 @@ const teamSelect = document.getElementById("teamSelect");
 const attendeeCount = document.getElementById("attendeeCount");
 const progressBar = document.getElementById("progressBar");
 const greeting = document.getElementById("greeting");
+const celebration = document.getElementById("celebration");
 const attendeeList = document.getElementById("attendeeList");
 
 //Track attendance
@@ -107,7 +108,9 @@ form.addEventListener("submit", function (event) {
       winningCount = powerCount;
     }
 
-    greeting.textContent = `CONGRATULATIONS! ${winningTeam} is the winning team with ${winningCount} attendees!`;
+    celebration.textContent = `CONGRATULATIONS! ${winningTeam} is the winning team with ${winningCount} attendees!`;
+    celebration.classList.add("success-message");
+    celebration.style.display = "block";
   }
 
   console.log(message);
