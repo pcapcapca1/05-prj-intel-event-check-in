@@ -7,6 +7,7 @@ const progressBar = document.getElementById("progressBar");
 const greeting = document.getElementById("greeting");
 const celebration = document.getElementById("celebration");
 const attendeeList = document.getElementById("attendeeList");
+const checkInButton = document.getElementById("checkInBtn");
 
 //Track attendance
 const maxCount = 50;
@@ -15,6 +16,7 @@ let attendees = JSON.parse(localStorage.getItem("attendees")) || [];
 
 //Load saved attendance counts
 attendeeCount.textContent = count;
+checkInButton.disabled = count >= maxCount;
 document.getElementById("waterCount").textContent =
   localStorage.getItem("waterCount") || 0;
 document.getElementById("zeroCount").textContent =
@@ -51,6 +53,13 @@ displayAttendees();
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
+  if (count >= maxCount) {
+    celebration.textContent = "Check-in is closed. The event is full.";
+    celebration.classList.add("success-message");
+    celebration.style.display = "block";
+    return;
+  }
+
   //Values from input
   const name = nameInput.value;
   const team = teamSelect.value;
@@ -86,6 +95,7 @@ form.addEventListener("submit", function (event) {
 
   //Celebrate when the attendance goal is reached
   if (count === maxCount) {
+    checkInButton.disabled = true;
     const waterCount = parseInt(
       document.getElementById("waterCount").textContent,
     );
