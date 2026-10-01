@@ -2,13 +2,14 @@
 const form = document.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect");
+const progressBar = document.getElementById("progressBar");
 
 //Track attendance
 let count = 0;
 const maxCount = 50;
 
 //Form submission handlinh
-form.addEventListener("submit", function (event){
+form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   //Values from input
@@ -24,6 +25,7 @@ form.addEventListener("submit", function (event){
 
   //Progress bar update
   const percentage = Math.round((count / maxCount) * 100) + "%";
+  progressBar.style.width = percentage;
   console.log(`Progress: ${percentage}`);
 
   //Team count update
@@ -33,4 +35,7 @@ form.addEventListener("submit", function (event){
   //Welcome message
   const message = `Welcome!!! ${name} from ${teamName}`;
   console.log(message);
+
+  //Reset form for next attendee
+  form.reset();
 });
