@@ -38,6 +38,36 @@ form.addEventListener("submit", function (event) {
   //Welcome message
   const message = `Welcome!!! ${name} from ${teamName}`;
   greeting.textContent = message;
+  greeting.classList.add("success-message");
+  greeting.style.display = "block";
+
+  //Celebrate when the attendance goal is reached
+  if (count === maxCount) {
+    const waterCount = parseInt(
+      document.getElementById("waterCount").textContent,
+    );
+    const zeroCount = parseInt(
+      document.getElementById("zeroCount").textContent,
+    );
+    const powerCount = parseInt(
+      document.getElementById("powerCount").textContent,
+    );
+    let winningTeam = "Team Water Wise";
+    let winningCount = waterCount;
+
+    if (zeroCount > winningCount) {
+      winningTeam = "Team Net Zero";
+      winningCount = zeroCount;
+    }
+
+    if (powerCount > winningCount) {
+      winningTeam = "Team Renewables";
+      winningCount = powerCount;
+    }
+
+    greeting.textContent = `Celebration! ${winningTeam} is the winning team with ${winningCount} attendees!`;
+  }
+
   console.log(message);
 
   //Reset form for next attendee
