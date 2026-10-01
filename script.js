@@ -3,6 +3,10 @@ const form = docoment.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect");
 
+//Track attendance
+let count = 0;
+const maxCount = 50;
+
 //Form submission handlinh
 form.addEventListener("submit", function (event){
   event.preventDefault();
@@ -12,5 +16,7 @@ form.addEventListener("submit", function (event){
   const team = teamSelect.ariaValueMax;
   const teamName = teamSelect.selectedOptions[0].text;
 
-  console.log(name, team);
+  console.log(name, teamName);
+
+  //Increment
 });
