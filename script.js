@@ -95,16 +95,16 @@ form.addEventListener("submit", function (event) {
     const powerCount = parseInt(
       document.getElementById("powerCount").textContent,
     );
-    let winningTeam = "Team Water Wise";
+    let winningTeam = "Water Wise";
     let winningCount = waterCount;
 
     if (zeroCount > winningCount) {
-      winningTeam = "Team Net Zero";
+      winningTeam = "Net Zero";
       winningCount = zeroCount;
     }
 
     if (powerCount > winningCount) {
-      winningTeam = "Team Renewables";
+      winningTeam = "Renewables";
       winningCount = powerCount;
     }
 
