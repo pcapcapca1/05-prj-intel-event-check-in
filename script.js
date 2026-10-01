@@ -5,10 +5,46 @@ const teamSelect = document.getElementById("teamSelect");
 const attendeeCount = document.getElementById("attendeeCount");
 const progressBar = document.getElementById("progressBar");
 const greeting = document.getElementById("greeting");
+const attendeeList = document.getElementById("attendeeList");
 
 //Track attendance
-let count = 0;
 const maxCount = 50;
+let count = parseInt(localStorage.getItem("attendanceCount"), 10) || 0;
+let attendees = JSON.parse(localStorage.getItem("attendees")) || [];
+
+//Load saved attendance counts
+attendeeCount.textContent = count;
+document.getElementById("waterCount").textContent =
+  localStorage.getItem("waterCount") || 0;
+document.getElementById("zeroCount").textContent =
+  localStorage.getItem("zeroCount") || 0;
+document.getElementById("powerCount").textContent =
+  localStorage.getItem("powerCount") || 0;
+
+const savedPercentage = Math.round((count / maxCount) * 100) + "%";
+progressBar.style.width = savedPercentage;
+
+function displayAttendees() {
+  attendeeList.innerHTML = "";
+
+  for (let i = 0; i < attendees.length; i++) {
+    const attendee = attendees[i];
+    const listItem = document.createElement("li");
+    const attendeeName = document.createElement("span");
+    const attendeeTeam = document.createElement("span");
+
+    attendeeName.className = "attendee-name";
+    attendeeName.textContent = attendee.name;
+    attendeeTeam.className = "attendee-team";
+    attendeeTeam.textContent = attendee.team;
+
+    listItem.appendChild(attendeeName);
+    listItem.appendChild(attendeeTeam);
+    attendeeList.appendChild(listItem);
+  }
+}
+
+displayAttendees();
 
 //Form submission handling
 form.addEventListener("submit", function (event) {
@@ -24,6 +60,7 @@ form.addEventListener("submit", function (event) {
   //Increment count
   count++;
   attendeeCount.textContent = count;
+  localStorage.setItem("attendanceCount", count);
   console.log("Total check-ins: ", count);
 
   //Progress bar update
@@ -34,6 +71,11 @@ form.addEventListener("submit", function (event) {
   //Team count update
   const teamCounter = document.getElementById(team + "Count");
   teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+  localStorage.setItem(team + "Count", teamCounter.textContent);
+
+  attendees.push({ name: name, team: teamName });
+  localStorage.setItem("attendees", JSON.stringify(attendees));
+  displayAttendees();
 
   //Welcome message
   const message = `Welcome!!! ${name} from ${teamName}`;
