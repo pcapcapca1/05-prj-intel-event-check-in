@@ -2,7 +2,9 @@
 const form = document.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect");
+const attendeeCount = document.getElementById("attendeeCount");
 const progressBar = document.getElementById("progressBar");
+const greeting = document.getElementById("greeting");
 
 //Track attendance
 let count = 0;
@@ -21,6 +23,7 @@ form.addEventListener("submit", function (event) {
 
   //Increment count
   count++;
+  attendeeCount.textContent = count;
   console.log("Total check-ins: ", count);
 
   //Progress bar update
@@ -34,6 +37,7 @@ form.addEventListener("submit", function (event) {
 
   //Welcome message
   const message = `Welcome!!! ${name} from ${teamName}`;
+  greeting.textContent = message;
   console.log(message);
 
   //Reset form for next attendee
