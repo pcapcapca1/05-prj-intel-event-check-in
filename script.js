@@ -12,8 +12,8 @@ form.addEventListener("submit", function (event){
   event.preventDefault();
 
   //Values from input
-  const name = nameInput.ariaValueMax;
-  const team = teamSelect.ariaValueMax;
+  const name = nameInput.value;
+  const team = teamSelect.value;
   const teamName = teamSelect.selectedOptions[0].text;
 
   console.log(name, teamName);
